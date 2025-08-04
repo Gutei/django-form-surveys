@@ -10,11 +10,6 @@ class SurveyViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = SurveySerializer
 
     def get_queryset(self):
-        '''
-        for param query format follow url --> answers/?param
-        in question we can using split by comma (,) if want filter list question
-        date format by datefield django <year-month-date> ex:2025-08-17
-        '''
         queryset = Survey.objects.all()
         slug = self.request.query_params.get('slug')
 
@@ -56,6 +51,7 @@ class AnswerViewSet(viewsets.ReadOnlyModelViewSet):
         question_list = question.split(",") if question else None
         value_list = value.split(",") if value else None
 
+        print(question_list)
 
         if survey:
             queryset = queryset.filter(user_answer__survey__slug=survey)
