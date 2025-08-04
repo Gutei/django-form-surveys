@@ -5,6 +5,7 @@ from djf_surveys.app_settings import SURVEYS_ADMIN_BASE_PATH
 app_name = 'djf_surveys'
 urlpatterns = [
     path('', views.SurveyListView.as_view(), name='index'),
+    path('api/', include('djf_surveys.api.urls')),
     path('detail/<str:slug>/', views.DetailSurveyView.as_view(), name='detail'),
     path('edit/<int:pk>/', views.EditSurveyFormView.as_view(), name='edit'),
     path('detail/result/<int:pk>/', views.DetailResultSurveyView.as_view(), name='detail_result'),
